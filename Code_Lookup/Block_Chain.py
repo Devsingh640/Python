@@ -8,6 +8,7 @@ def block_chain_print():	#Print function for list.
 def get_last_block_chain_amount():	#Get function for last element element of block chain.
 	return block_chain[-1]	#When called this will send last block chain value stored.
 
+
 def adding_value_to_block_chain(last_tx, append_a_new_amount):	#Append function for list ie to add value to a list.
 	block_chain.append([last_tx, append_a_new_amount])	#This will be called to append value to a block chain list, the value will be appended along with the last stored value of block chain list.
 
