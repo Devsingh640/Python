@@ -3,8 +3,8 @@
 ##########################################################################################################
 
 generic_block =	{
-					"previous_hash": "XYX",
-					"index": 0,
+					"previous_hash" : "XYX",
+					"index" : 0,
 					"transaction" : []
 	 			}
 
@@ -51,8 +51,7 @@ def print_users_available_options():
 	print("3.) To print Open Transactions")
 	print("4.) To Mine A New Block")
 	print("5.) Run crack")
-	print("6.) Exit")
-	
+	print("6.) Exit")	
 	pl()
 	sp()
 	sp()
@@ -85,13 +84,28 @@ def access_grant():
 	print("Access Granted")
 	
 
+def block_chain_elements_print():
+	for block in block_chain:
+		print('Outputting Blocks')
+		print(block)
+	else:
+		print('!'*40)
+
 ##########################################################################################################
 # SECURITY RELATED FUNCTIONS
 ##########################################################################################################
 
 
+def hash_block(block):
+	return '-'.join([str(block[key]) for key in block])    #
+
+
 def crack_test():
-	block_chain[0] = 3
+	block_chain[0] = {
+						"previous_hash" : " ",
+						"index" : 0,
+						"transaction" : [{'sender' : 'JOHN', 'recipient' : 'SNOW', 'amount' : '55555'}]
+	 				}
 
 
 def user_login_in():
@@ -115,7 +129,13 @@ def user_login_in():
 
 
 def crack_detection_system():	
-	pass
+	for (index, block) in enumerate(block_chain):  # enumerate will generate a tuple with index and block value which are unpacked here.
+		if index == 0:
+			continue
+		if block['previous_hash'] != hash_block(block_chain[index - 1]):
+			return False
+	return True
+
 
 
 ##########################################################################################################
@@ -160,15 +180,11 @@ def add_transactions(sender, recipient, amount=1.0):
 
 def mine_block():
 	
-	last_block = block_chain[-1]
-	hashed_block = ""
-	for key in last_block:
-		value = last_block[key]
-		hashed_block = hashed_block + str(value)
-	
+	last_block = block_chain[-1]	# from block chain we took out last element and assigned to last_block.
+	hashed_block = hash_block(last_block)
 	print(hashed_block)
 	block =	{
-				"previous_hash": "XYX",
+				"previous_hash": hashed_block,
 				"index": len(block_chain),
 				"transaction" : open_transactions
 	 		}
@@ -281,7 +297,13 @@ while True:
 		sp()
 		sp()
 		sp()
-		
+	
+	if not crack_detection_system():
+		block_chain_elements_print()
+		print('Invalid Block Chain')
+		break
+else:
+    print('User Left')		
 # END OF WHILE LOOP.
 
 print("All Transactions Saved")
