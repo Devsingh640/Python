@@ -5,6 +5,9 @@
 
 block_chain = []  
 open_transactions = []
+owner = "OM DEV SINGH"
+userauth = "admin"
+passauth = "admin@123"
 
 
 ##########################################################################################################
@@ -38,9 +41,10 @@ def print_users_available_options():
 	pl()
 	sp()
 	print("1.) To Print Last Transaction")
-	print("2.) Create New Transaction")
-	print("3.) Exit")
-	print("4.) Run crack")
+	print("2.) To Create Open Transactions")
+	print("3.) To print Open Transactions")
+	print("4.) Exit")
+	print("5.) Run crack")
 	pl()
 	sp()
 	sp()
@@ -59,6 +63,18 @@ def success_transaction():
 
 def block_chain_print():	
 	print(block_chain)
+
+
+def open_transactions_print():	
+	print(open_transactions)
+
+
+def access_deny():	
+	print("Access Deny")
+
+
+def access_grant():	
+	print("Access Granted")
 	
 
 ##########################################################################################################
@@ -70,15 +86,23 @@ def crack_test():
 	block_chain[0] = 3
 
 
-def user_sign_in():
+def user_login_in():
 	while True:
-		print("Get Yourself Registered")
-		username = input("UserName : ")
+		""" 
+			:username: username enter by the user for login.
+			:password: password entered by the user for login.
+		"""
+		sp()
+		kl()
+		username = input("Enter UserName : ")
 		password = input("Enter Password : ")
-		Passwork = input("Again Password : ")
-		if password == Passwork:
-			return (username, password)
+		kl()
+		sp()
+		if userauth == username and password == passauth:
+			access_grant()
+			break
 		else:
+			access_deny()
 			continue
 
 
@@ -110,27 +134,55 @@ def crack_detection_system():
 # FUNCTIONS
 ##########################################################################################################
 
-def adding_value_to_block_chain(last_tx, append_a_new_amount):
-	block_chain.append([last_tx, append_a_new_amount])
 
-
-def add_transactions(sender, recipient, amount=1.0):
-	pass
-
-
-def mine_block():
-	pass
+def user_input_to_open_a_transaction():
+	""" 
+		:tx_sender:    who will send coins for now set to default ie OM.
+		:tx_recipient: who will get coins.
+		:tx_amount:    no. of coins send in a transaction.
+	"""
+	tx_sender    = owner
+	tx_recipient = input("Enter Recipients Name : ")
+	tx_amount    = float(input("Enter Transaction Amount : "))
+	return (tx_sender, tx_recipient, tx_amount)	   # sending data in tuple.
 
 
 def get_last_block_chain_amount():
 	return block_chain[-1]
 
 
+def adding_value_to_open_transactions(this):
+	open_transactions.append(this)
+
+
+def adding_value_to_block_chain(last_tx, append_a_new_amount):
+	block_chain.append([last_tx, append_a_new_amount])
+
+
+def add_transactions(sender, recipient, amount=1.0):
+	""" 
+		:sender:    who will send coins.
+		:recipient: who will get coins.
+		:amount:    no. of coins send in a transaction default is set to 1.0.
+	"""
+	transaction =   { 
+						'sender':    sender,
+						'recipient': recipient,
+						'amount':    amount
+					}
+
+	adding_value_to_open_transactions(this = transaction)
+	
+
+def mine_block():
+	pass
+
+
 ##########################################################################################################
 # MAIN PROGRAM
 ##########################################################################################################
 
-user_sign_in()
+user_login_in()
 
 sp()
 sp()
@@ -141,21 +193,7 @@ fl()
 sp()
 sp()
 
-if block_chain == []:
-	kl()
-	print("Make Your First Transaction")
-	kl()
-	sp()
-	first_tx_amount = float(input("Enter Your First Transaction Amount : ")) 
-	print("Amount Entered :",first_tx_amount)
-	block_chain.append(first_tx_amount)
-	success_transaction()
-	sp()
-	kl()
-	sp()
-	sp()
-	sp()
-
+# START OF WHILE LOOP.
 while True:
 	print_users_available_options()
 	user_choice_is = choice_input()
@@ -176,9 +214,12 @@ while True:
 		print("Make Your Transaction")
 		kl()
 		sp()
-		tx_amount = float(input("Enter Your Transaction Amount : "))
-		print("Amount Entered :",tx_amount)
-		adding_value_to_block_chain(last_tx = get_last_block_chain_amount(), append_a_new_amount = tx_amount)
+		tx_data = user_input_to_open_a_transaction()	# imported tuple here which contain multiple dats.
+		tx_sender , tx_recipient, tx_amount = tx_data	# opened tupled and used its data
+		print("Senders Name   : ",tx_sender)
+		print("Recipient Name : ",tx_recipient)
+		print("Amount Entered : ", tx_amount)
+		add_transactions(sender = tx_sender, recipient = tx_recipient, amount = tx_amount)		
 		success_transaction()
 		sp()
 		kl()
@@ -190,6 +231,17 @@ while True:
 	elif user_choice_is == "3":
 		kl()
 		sp()
+		open_transactions_print()
+		sp()
+		kl()
+		dl()
+		sp()
+		sp()
+		sp()
+	
+	elif user_choice_is == "4":
+		kl()
+		sp()
 		print("Exit")
 		sp()
 		kl()
@@ -199,7 +251,7 @@ while True:
 		sp()
 		break
 
-	elif user_choice_is == "4":
+	elif user_choice_is == "5":
 		kl()
 		sp()
 		crack_test()
@@ -210,12 +262,11 @@ while True:
 		sp()
 		sp()
 		sp()
-		
-		
+				
 	else:
 		kl()
 		sp()
-		print("Invalid Option")
+		print("Invalid Input")
 		sp()
 		kl()
 		dl()
@@ -229,6 +280,7 @@ while True:
 
 	else:
 		continue
+# END OF WHILE LOOP.
 
 print("All Transactions Saved")
 sp()
