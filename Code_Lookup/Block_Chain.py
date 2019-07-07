@@ -39,14 +39,42 @@ def print_users_available_options():
 	print("1.) To Print Last Transaction")
 	print("2.) Create New Transaction")
 	print("3.) Exit")
+	print("4.) Run crack")
 	pl()
 	sp()
 	sp()
 	sp()
 
 
-def choice_input():
+def crack_test():
+	block_chain[0] = 3
 
+
+def crack_detection_system():
+	
+	block_index = 0
+	is_valid = True
+	
+	for block in block_chain:
+		if block_index == 0:
+			block_index += 1
+			continue
+
+		elif block[0] == block_chain[block_index - 1]:
+			print(block_index)
+			print(block[0])
+			print(block_chain[block_index])
+			print(block_chain[block_index - 1])
+			is_valid = True
+		
+		else:	
+			is_valid = False
+			print("Chain Had Been Compromised")
+			break
+		block_index += 1
+	return is_valid
+
+def choice_input():
 	dl()
 	user_choice = input("Select : ")
 	return user_choice
@@ -82,11 +110,9 @@ if block_chain == []:
 	sp()
 
 while True:
-	
 	print_users_available_options()
-
 	user_choice_is = choice_input()
-	
+
 	if user_choice_is == "1":
 		kl()
 		sp()
@@ -100,7 +126,7 @@ while True:
 
 	elif user_choice_is == "2":
 		kl()
-		print("Make Your First Transaction")
+		print("Make Your Transaction")
 		kl()
 		sp()
 		tx_amount = float(input("Enter Your Transaction Amount : "))
@@ -125,6 +151,19 @@ while True:
 		sp()
 		sp()
 		break
+
+	elif user_choice_is == "4":
+		kl()
+		sp()
+		crack_test()
+		print("CRACKRD")
+		sp()
+		kl()
+		dl()
+		sp()
+		sp()
+		sp()
+		
 		
 	else:
 		kl()
@@ -136,6 +175,13 @@ while True:
 		sp()
 		sp()
 		sp()
+		
+	if not crack_detection_system():
+		print("Chain Had Been Compromised")
+		break
+
+	else:
+		continue
 
 print("All Transactions Saved")
 
