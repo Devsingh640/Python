@@ -1,34 +1,35 @@
+##########################################################################################################
+# GLOBAL VARIABLES
+##########################################################################################################
+
+
+block_chain = []  
+open_transactions = []
+
+
+##########################################################################################################
+# UI IMPROVEMENT PRINT FUNCTIONS
+##########################################################################################################
+
+
 def sp():
 	print(" ")
 
 
 def fl():
-	print("######################################################################################")
+	print("#"*100)
 
 
 def dl():
-	print("......................................................................................")
+	print("."*100)
 
 
 def kl():
-	print("======================================================================================")
+	print("="*100)
 
 
 def pl():
-	print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
-
-sp()
-sp()
-fl()
-fl()
-print("                      WELCOME TO YOUR BIT-COIN TRANSFER PORTAL")
-fl()
-sp()
-sp()
-
-
-block_chain = []  
+	print("+"*100)
 
 
 def print_users_available_options():
@@ -46,12 +47,42 @@ def print_users_available_options():
 	sp()
 
 
+def choice_input():
+	dl()
+	user_choice = input("Select : ")
+	return user_choice
+
+
+def success_transaction():
+	print("Transaction Completed")
+
+
+def block_chain_print():	
+	print(block_chain)
+	
+
+##########################################################################################################
+# SECURITY RELATED FUNCTIONS
+##########################################################################################################
+
+
 def crack_test():
 	block_chain[0] = 3
 
 
-def crack_detection_system():
-	
+def user_sign_in():
+	while True:
+		print("Get Yourself Registered")
+		username = input("UserName : ")
+		password = input("Enter Password : ")
+		Passwork = input("Again Password : ")
+		if password == Passwork:
+			return (username, password)
+		else:
+			continue
+
+
+def crack_detection_system():	
 	block_index = 0
 	is_valid = True
 	
@@ -74,27 +105,43 @@ def crack_detection_system():
 		block_index += 1
 	return is_valid
 
-def choice_input():
-	dl()
-	user_choice = input("Select : ")
-	return user_choice
 
-def block_chain_print():	
-	print(block_chain)	
-
-def get_last_block_chain_amount():
-	return block_chain[-1]
+##########################################################################################################
+# FUNCTIONS
+##########################################################################################################
 
 def adding_value_to_block_chain(last_tx, append_a_new_amount):
 	block_chain.append([last_tx, append_a_new_amount])
 
 
-def success_transaction():
-	print("Transaction Completed")
+def add_transactions(sender, recipient, amount=1.0):
+	pass
 
+
+def mine_block():
+	pass
+
+
+def get_last_block_chain_amount():
+	return block_chain[-1]
+
+
+##########################################################################################################
+# MAIN PROGRAM
+##########################################################################################################
+
+user_sign_in()
+
+sp()
+sp()
+fl()
+fl()
+print("                      WELCOME TO YOUR BIT-COIN TRANSFER PORTAL")
+fl()
+sp()
+sp()
 
 if block_chain == []:
-
 	kl()
 	print("Make Your First Transaction")
 	kl()
@@ -184,9 +231,11 @@ while True:
 		continue
 
 print("All Transactions Saved")
-
 sp()
 sp()
 fl()
 fl()
 
+##########################################################################################################
+# END OF PROGRAM
+##########################################################################################################
