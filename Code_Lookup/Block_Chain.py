@@ -2,10 +2,16 @@
 # GLOBAL VARIABLES
 ##########################################################################################################
 
+generic_block =	{
+					"previous_hash": "XYX",
+					"index": 0,
+					"transaction" : []
+	 			}
 
-block_chain = []  
+block_chain = [generic_block]
 open_transactions = []
-owner = "OM DEV SINGH"
+
+owner    = "OM DEV SINGH"
 userauth = "admin"
 passauth = "admin@123"
 
@@ -43,8 +49,10 @@ def print_users_available_options():
 	print("1.) To Print Last Transaction")
 	print("2.) To Create Open Transactions")
 	print("3.) To print Open Transactions")
-	print("4.) Exit")
+	print("4.) To Mine A New Block")
 	print("5.) Run crack")
+	print("6.) Exit")
+	
 	pl()
 	sp()
 	sp()
@@ -107,27 +115,7 @@ def user_login_in():
 
 
 def crack_detection_system():	
-	block_index = 0
-	is_valid = True
-	
-	for block in block_chain:
-		if block_index == 0:
-			block_index += 1
-			continue
-
-		elif block[0] == block_chain[block_index - 1]:
-			print(block_index)
-			print(block[0])
-			print(block_chain[block_index])
-			print(block_chain[block_index - 1])
-			is_valid = True
-		
-		else:	
-			is_valid = False
-			print("Chain Had Been Compromised")
-			break
-		block_index += 1
-	return is_valid
+	pass
 
 
 ##########################################################################################################
@@ -155,10 +143,6 @@ def adding_value_to_open_transactions(this):
 	open_transactions.append(this)
 
 
-def adding_value_to_block_chain(last_tx, append_a_new_amount):
-	block_chain.append([last_tx, append_a_new_amount])
-
-
 def add_transactions(sender, recipient, amount=1.0):
 	""" 
 		:sender:    who will send coins.
@@ -175,7 +159,20 @@ def add_transactions(sender, recipient, amount=1.0):
 	
 
 def mine_block():
-	pass
+	
+	last_block = block_chain[-1]
+	hashed_block = ""
+	for key in last_block:
+		value = last_block[key]
+		hashed_block = hashed_block + str(value)
+	
+	print(hashed_block)
+	block =	{
+				"previous_hash": "XYX",
+				"index": len(block_chain),
+				"transaction" : open_transactions
+	 		}
+	block_chain.append(block)		 
 
 
 ##########################################################################################################
@@ -242,14 +239,13 @@ while True:
 	elif user_choice_is == "4":
 		kl()
 		sp()
-		print("Exit")
+		mine_block()
 		sp()
 		kl()
 		dl()
 		sp()
 		sp()
 		sp()
-		break
 
 	elif user_choice_is == "5":
 		kl()
@@ -263,6 +259,18 @@ while True:
 		sp()
 		sp()
 				
+	elif user_choice_is == "6":
+		kl()
+		sp()
+		print("Exit")
+		sp()
+		kl()
+		dl()
+		sp()
+		sp()
+		sp()
+		break
+
 	else:
 		kl()
 		sp()
@@ -274,12 +282,6 @@ while True:
 		sp()
 		sp()
 		
-	if not crack_detection_system():
-		print("Chain Had Been Compromised")
-		break
-
-	else:
-		continue
 # END OF WHILE LOOP.
 
 print("All Transactions Saved")
