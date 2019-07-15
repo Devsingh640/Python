@@ -1,0 +1,10 @@
+Given a string S, find if any substring of string S is "ABC" or not. String S contains only uppercase characters only ['A'-'Z'].
+
+Input:
+Input contains a single string S.
+
+Output:
+Print "YES" (without quote) if any substring of string S is "ABC" else print "NO".
+
+Constraints:
+1 <= |S| <= 100
