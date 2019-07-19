@@ -1,0 +1,12 @@
+Given a number N, find count of divisors of number N. For example:
+N = 10
+Divisors of 10 are => 1, 2, 5, 10 and count of divisors will be 4.
+
+Input:
+First line of input contains single number N.
+
+Output:
+Print count of divisors of number N.
+
+Constraints:
+1 <= N <= 1000000000000

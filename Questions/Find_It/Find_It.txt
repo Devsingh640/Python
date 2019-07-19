@@ -1,0 +1,11 @@
+Given an array A of size N in which each element occur twice except one number, find that number.
+
+Input:
+First line of input contains N, size of array A. Next line contains N space separated elements of array A.
+
+Output: 
+Print the number which occur once in array A.
+
+Constraints:
+1 <= N <= 200000
+1 <= Ai <= 1000000000
