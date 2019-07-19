@@ -1,4 +1,5 @@
 a = []
+xoris = 0
 N = int(input(" "))
 
 
@@ -8,7 +9,8 @@ for x in range(1, N + 1):
     print(a)
 
 
-for x in range(0, N + 1):
-    if a[x] in a:
-        d = a.count(a[x])
-        print(d)
+for x in range(0, N):
+        xoris = xoris ^ (a[x])
+        
+print(xoris)
+
