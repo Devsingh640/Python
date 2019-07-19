@@ -1,0 +1,10 @@
+Given a number N, find out whether it is prime number or not.
+
+Input:
+Input contains a single integer N.
+
+Output:
+Print "YES" (without quote) if N is prime else print "NO" (without quote).
+
+Constraints:
+1 <= N <= 1000000000000
