@@ -35,30 +35,30 @@ for loop in range(1, (no_of_testcase + 1)):
                 if not get:
                     pass
                 else:
-                    # print(" Palindrome String : ", check_this_string, 
-                    # " ( Starting index : ", now_incriment_from_here, ")",
-                    # " ( ending index : ", (incriment_sub_string - 1), ")"
-                    # )
-                    # print(" ")
+                    print(" Palindrome String : ", check_this_string, 
+                    " ( Starting index : ", now_incriment_from_here, ")",
+                    " ( ending index : ", (incriment_sub_string - 1), ")"
+                    )
+                    print(" ")
                     all_non_repeating_palindrome_sub_strings.append(check_this_string)
 
     for elements in (all_non_repeating_palindrome_sub_strings):
         this_element_length = len(elements)
         previous_element_length = len(previous_element)
         if (previous_element_length < this_element_length):
-            # print("element is : ", elements,
-            # " and element length is : ", this_element_length,
-            # " previous element is : ", previous_element,
-            # " and previous element length is : ", previous_element_length
-            # )
+            print("element is : ", elements,
+            " and element length is : ", this_element_length,
+            " previous element is : ", previous_element,
+            " and previous element length is : ", previous_element_length
+            )
             this_is_greatest_palindrome = elements
             previous_element = this_is_greatest_palindrome
         else:
             this_is_greatest_palindrome = previous_element
             previous_element = this_is_greatest_palindrome
             
-    # print(all_non_repeating_palindrome_sub_strings," and its length is : ",len(all_non_repeating_palindrome_sub_strings))
-    # print(" ")        
+    print(all_non_repeating_palindrome_sub_strings," and its length is : ",len(all_non_repeating_palindrome_sub_strings))
+    print(" ")        
     print(this_is_greatest_palindrome)
 
     all_non_repeating_palindrome_sub_strings.clear()
