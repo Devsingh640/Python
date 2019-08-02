@@ -1,5 +1,5 @@
-#This is a program to print all natural numbers from 1 to n.
-print('This is a program to print all natural numbers from 1 to n.')
+#This is a program to print all natural numbers from 1 to n using while loop.
+print('This is a program to print all natural numbers from 1 to n using while loop.')
 value_n = int(input('Enter a value for n :'))
 x = 0   # setting counter x to 0. 
 while x < value_n:  # while loop runs till x value is less then user entered value. 
