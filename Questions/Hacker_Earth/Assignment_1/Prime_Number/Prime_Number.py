@@ -3,7 +3,7 @@ import math
 N = int(input(""))
 
 if (N > 1):    
-    for x in range(2, int(math.sqrt(N))):    
+    for x in range(2, N):    
         if ((N % x) == 0):
             print("NO")
             break     

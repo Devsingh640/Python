@@ -1,0 +1,17 @@
+print('Opening file in write mode.')
+file_1 = open('test_1', mode = 'w')
+file_1.write('1 2 3 4 \n5 6 7 8')
+file_1.close()
+print('File closed.')
+
+print(' ')
+
+print('Opening file in read mode.')
+print(' ')
+print(' ')
+file_1 = open('test_1', mode = 'r')
+print(file_1.read())
+file_1.close()
+print(' ')
+print(' ')
+print('File closed.')
